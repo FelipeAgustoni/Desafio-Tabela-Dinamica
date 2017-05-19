@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css"></link>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></link>
     <script src="assets/js/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
@@ -59,7 +61,8 @@
 
             <div id="divTabela">
                 <p class="text-right" id="lblTotal"><strong>Total de Registro(s):<span id="totalReg">0</span> </strong></p>
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="DadosTabela">
+                <thead>
                     <tr>
                         <th style="width: 20%">Nome</th>
                         <th style="width: 10%">Sexo</th>
@@ -68,6 +71,7 @@
                         <th style="width: 20%">RG</th>
                         <th style="width: 15%">Ações</th>
                     </tr>
+                </thead>
                     <tbody id="tbodyTable">
                         
                     </tbody>

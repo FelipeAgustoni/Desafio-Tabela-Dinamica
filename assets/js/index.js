@@ -1,5 +1,6 @@
 //Executa quando o documento é carregado
-var pessoas = []
+
+var pessoas = [] // Array global onde vou armazenar meu objeto pessoa
 var id = 0;
 
 $(document).ready(function () {
@@ -9,12 +10,14 @@ $(document).ready(function () {
 		$('#txtDataNascimento').mask('99/99/9999');
 		$('#txtRg').mask('99.999.999-9');
 
+		$("#DadosTabela").DataTable();
+
         $("#btnAdicionar").click(function(){
 
-        	// Atribuindo o valor do input id hidden em idPessoa
+        	// Atribuindo o valor do input hidden em idPessoa
         	idPessoa = $("#id").val().trim();
 
-        	//Validando campos obrigatorios
+        	// Verifica se os campos obrigatórios estão vazios ou com espaço em branco
         	if (!$('#txtNome').val().trim() || !$('#selSexo').val().trim() || !$('#txtDataNascimento').val().trim() || !$('#txtCpf').val().trim()) {
         		alert('Campo(s) obrigatorio(s) não preenchido(s) !');
         		clear();
@@ -25,7 +28,7 @@ $(document).ready(function () {
 
     			for (var i = 0; i < pessoas.length; i++) {
 				pessoa = pessoas[i];
-
+					// Atribuindo o valor dos inputs ao objeto do vetor
 					if(pessoa.id == idPessoa){
 	    				pessoa.nome = $("#txtNome").val();
 	    				pessoa.sexo = $("#selSexo").val();
@@ -35,8 +38,7 @@ $(document).ready(function () {
 	    			}
     			}
     		}
-
-			else {            
+			else {          
 	            pessoas.push({ // Insere no vetor
 	            	id: ++id,
 	            	nome: $("#txtNome").val(),
@@ -56,9 +58,12 @@ $(document).ready(function () {
 
 
     update = function(id){
+
 		for (var i = 0; i < pessoas.length; i++) {
 			pessoa = pessoas[i];
+			// Comparo se o id que recebi como parâmetro é igual ao da tr
 			if(pessoa.id == id){
+				// Jogo o valor do objeto pessoa da tabela no input
 				$("#id").val(pessoa.id);
 				$("#txtNome").val(pessoa.nome);
 				$("#selSexo").val(pessoa.sexo);
@@ -71,6 +76,7 @@ $(document).ready(function () {
 
         //funcao para limpar os campos
         function clear(){
+        	
         	$("#id").val("");
 			$('#txtNome').val("");
 		    $('#selSexo').val("");
@@ -85,13 +91,13 @@ $(document).ready(function () {
 	   	var confirma = confirm("Deseja realmente excluir este registro ? O Processo não poderá ser revertido !");
 	    
 	    if(confirma){
-	    	// Percorre o vetor, comparando se o id que recebeu como parametro na funcao
+	    	// Percorre o vetor, comparando se o id que recebeu como parâmetro na funcao
 			// é igual ao id do botao em que o usuario clicou na tr da tabela
 	    	for (var i = 0; i < pessoas.length; i++) {
 	    		pessoa = pessoas[i];
 	    		if(pessoa.id == id){
 	    			// Splice espera 2 parametros, indice - qtd
-	    			// remove aquele elemento, no indice i, 1 registro
+	    			// remove aquele elemento, no índice i, 1 registro
 	    			pessoas.splice(i, 1);
 	    		}
 	    	}
@@ -104,10 +110,11 @@ $(document).ready(function () {
 
 });
 
-//prepara a tabela
+// Prepara a tabela
 function carregarTabela () {
 
 	$("#tbodyTable").html(''); // limpa a tabela
+
 	for (var i = 0; i < pessoas.length; i++) {
 		var pessoa = pessoas[i];
 
